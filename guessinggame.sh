@@ -1,16 +1,19 @@
+
+file_no=$(ls -l | wc -l)
+
 function ask {
 	echo "How many files are in this folder?"
 	read response
 }
 
 function highlow {
-	if [[ $response  -gt  3 ]]
+	if [[ $response  -gt  $file_no ]]
 	then
 		echo  "You have guessed too high.  Try again"
-	elif  [[ $response -lt 3 ]]
+	elif  [[ $response -lt $file_no ]]
 	then
 		echo "You have guessed too low. Try again."
-	else [[ $response -eq 3 ]]
+	else [[ $response -eq $file_no ]]
 		echo "What a great guess!"
 	fi
 }
@@ -19,7 +22,7 @@ ask
 
 highlow $response
 
-while [[ $response != 3 ]]
+while [[ $response != $file_no ]]
 do
 	ask
 	highlow $response
